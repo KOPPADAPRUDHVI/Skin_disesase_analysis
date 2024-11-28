@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skin Health Diagnosis & Treatment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css" />
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to bottom, #e0f7fa, #e0f2f1);
+            color: #333;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo { font-size: 36px;
+            font-weight: 700;
+            color: #00796b;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px; transform: translateY(-5px);
+            transform: translateY(-10px);
+            filter: none;
+            fill: #004d40;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            padding: 10px 15px;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        nav a:hover {
+            background-color: #00796b;
+            color: #ffffff;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .btn-secondary {
+            background-color: #ffffff;
+            color: #00796b;
+            border: 2px solid #00796b;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-secondary:hover {
+            background-color: #00796b;
+            color: #ffffff;
+        }
+
+        .btn-primary {
+            background-color: #00796b;
+            color: #ffffff;
+            padding: 10px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: #004d40;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 80px 40px;
+            background: url('https://images.unsplash.com/photo-1581091870622-1b1d1f7f1f50') no-repeat center center/cover;
+            color: #ffffff;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .hero h1 {
+            font-size: 54px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero .btn-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero-image {
+            flex-shrink: 0;
+            width: 600px;
+            height: 500px;
+            background: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/derm_-_hero_image_2_1.width-1300.jpg') center center/cover;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .about-section {
+            padding: 80px 40px;
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: #00796b;
+        }
+
+        .about-section p {
+            font-size: 20px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .services-section {
+            padding: 80px 40px;
+            background: linear-gradient(to right, #e0f7fa, #e0f2f1);
+            color: #004d40;
+            text-align: center;
+        }
+
+        .services-section h2 {
+            font-size: 40px;
+            margin-bottom: 30px;
+            color: #00796b;
+        }
+
+        .services-section .services-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .service-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 40px;
+            text-align: left;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-card h3 {
+            font-size: 26px;
+            margin-bottom: 15px;
+            color: #00796b;
+        }
+
+        .service-card p {
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .carousel {
+            width: 90%;
+            margin: 80px auto;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #00796b;
+            color: #ffffff;
+            text-align: center;
+            padding: 30px;
+            margin-top: 60px;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        footer a {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+
+        footer a:hover {
+            color: #e0f7fa;
+        }
+
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-image {
+                width: 100%;
+                height: 300px;
+            }
+        }
+
+        .pic-ctn {
+            width: 80%;
+            max-width: 1200px;
+            height: 600px;
+            margin: 40px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes display {
+            0% {
+                transform: translateX(200px);
+                opacity: 0;
+            }
+            10% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            20% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            30% {
+                transform: translateX(-200px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-200px);
+                opacity: 0;
+            }
+        }
+
+        .pic-ctn > img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    animation: display 12s infinite;
+    transition: opacity 0.5s ease-in-out, transform 0.3s;
+}
+
+.pic-ctn > img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+        .pic-ctn img:nth-child(2) {
+            animation-delay: 3s;
+        }
+        .pic-ctn img:nth-child(3) {
+            animation-delay: 6s;
+        }
+        .pic-ctn img:nth-child(4) {
+            animation-delay: 9s;
+        }
+        .pic-ctn img:nth-child(5) {
+            animation-delay: 12s;
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            justify-items: center;
+            margin-top: 40px;
+        }
+
+        .contact-card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .contact-card img {
+            width: 50px;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .contact-card p {
+            font-size: 18px;
+            color: #004d40;
+            line-height: 1.6;
+        }
+
+        .contact-card a {
+            color: #00796b;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .contact-card a:hover {
+            color: #004d40;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">
+            <img src="https://img.icons8.com/ios-filled/100/004d40/skin.png" alt="DermaSense Logo">
+            DermaSense AI
+        </a>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <div class="nav-buttons">
+            <a href="/loginpage" class="btn-secondary">Login</a>
+            <a href="/signuppage" class="btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Revolutionizing skin care with AI precision</h1>
+            <p>Experience fast and accurate skin disease diagnosis. Our AI-powered analysis delivers personalized treatment recommendations for healthier skin. Take charge of your skin health today—start your journey now!</p>
+            <div class="btn-group">
+                <a href="/signuppage" class="btn btn-primary">Sign up today</a>
+                <a href="#about" class="btn btn-secondary">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image" style="background: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/derm_-_hero_image_2_1.width-1300.jpg') center center/cover; width: 800px; height: 600px;"></div>
+    </div>
+
+    <div class="about-section" id="about">
+        <h2>About Our Platform</h2>
+        <p>Welcome to DermaSense AI—your trusted platform for accurate skin disease evaluation and care. By analyzing uploaded images, our system identifies skin conditions and provides detailed reports along with tailored treatment recommendations. We are committed to offering a seamless, user-friendly experience to empower individuals in taking control of their skin health. Discover reliable, accessible solutions for healthier skin today.</p>
+        <div class="pic-ctn">
+            <img src="https://kmrcommunications.com/wp-content/uploads/2023/05/AI-powered_dermatology__kmr_communications.png" alt="" class="pic" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">
+            <img src="https://www.iafaforallergy.com/wp-content/uploads/2021/12/treat-skin-diseases.jpg" alt="" class="pic" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://i1.wp.com/www.marktechpost.com/wp-content/uploads/2021/05/10167-scaled.jpg?resize=1068%2C712&ssl=1" alt="" class="pic" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://www.lamaisonvalmont.com/media/wysiwyg/valmont_skin_diagnosis_landing_banner_mobile-min.jpg" alt="" class="pic" style="width: 100%; height: 100%; object-fit: cover;">
+            <img src="https://plugins-media.makeupar.com/smb/blog/post/2021-04-21/6cbd1fd7-9d4d-47e2-8ca9-b30d270a3910.jpg" alt="" class="pic" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+    </div>
+
+    <div class="services-section" id="services">
+        <h2>Our Services</h2>
+        <div class="services-container">
+            <div class="service-card">
+                <h3>Image-based Skin Disease Analysis</h3>
+                <p>Our platform allows users to upload images of their skin conditions. Using advanced AI technology, the image is analyzed to identify the specific skin disease, providing an accurate diagnosis.</p>
+            </div>
+            <div class="service-card">
+                <h3>Personalized Treatment Recommendations</h3>
+                <p>Based on the diagnosis, our system provides a personalized list of suggested treatments and medication descriptions to help manage and cure the identified skin condition.</p>
+            </div>
+            <div class="service-card">
+                <h3>Detailed Skin Health Reports</h3>
+                <p>Our platform delivers detailed skin health reports with precise diagnoses, annotated images, and severity levels. Users receive personalized treatment recommendations, prevention tips, and educational resources. </p>
+            </div>
+            <div class="service-card">
+                <h3>Accurate Skin Disease Predictions</h3>
+                <p>Our platform ensures a 95% accuracy rate in predicting skin diseases, offering reliable and precise results. Using advanced image analysis techniques, we provide users with dependable diagnoses that empower them to take the right steps toward treatment and care.</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contact-section" id="contact" style="background-color: rgba(230, 244, 241, 0.9); padding: 60px 40px; margin-top: 40px;">
+        <h2>Contact Us</h2>
+        <p style="font-size: 20px; line-height: 1.6;">Have questions or need support? Get in touch with us, and we'll be happy to help you on your skin health journey.</p>
+        <div class="contact-info">
+            <div class="contact-card">
+                <img src="https://img.icons8.com/ios-filled/50/00796b/email.png" alt="Email Icon">
+                <p>Email: <a href="mailto:support@skinhealth.com">support@skinhealth.com</a></p>
+            </div>
+            <div class="contact-card">
+                <img src="https://img.icons8.com/ios-filled/50/00796b/phone.png" alt="Phone Icon">
+                <p>Phone: <a href="tel:+1800982342">+1 (800) 123-4567</a></p>
+            </div>
+            <div class="contact-card">
+                <img src="https://img.icons8.com/ios-filled/50/00796b/map-marker.png" alt="Address Icon">
+                <p>123 Skin Health Ave, Wellness City, USA</p>
+            </div>
+        </div>
+    </div>
+
+<footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.carousel').slick({
+                dots: true,
+                infinite: true,
+                speed: 700,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true,
+                centerMode: true,
+                variableWidth: true,
+                adaptiveHeight: true
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #e0f7fa, #e0f2f1);
+            font-family: 'Roboto', sans-serif;
+            color: #333;
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: translateY(-10px);
+        }
+
+        h1 {
+            color: #00796b;
+            margin-bottom: 25px;
+            font-size: 32px;
+        }
+
+        h2 {
+            color: #004d40;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 0 auto 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #00796b;
+            border-radius: 8px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="file"]:hover {
+            border-color: #004d40;
+        }
+
+        button, a {
+            display: inline-block;
+            padding: 14px 25px;
+            background-color: #00796b;
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover, a:hover {
+            background-color: #004d40;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .error {
+            color: red;
+            margin-top: 10px;
+        }
+
+        .image-preview {
+            display: block;
+            margin: 20px auto;
+            height: 300px;
+            width: 300px;
+            object-fit: cover;
+            border-radius: 15px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .image-preview:hover {
+            transform: scale(1.05);
+        }
+
+        hr {
+            border: 1px solid #00796b;
+            margin: 40px 0;
+        }
+
+        .result-section {
+            margin: 40px 0;
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .result-section h2 {
+            color: #00796b;
+            margin-bottom: 20px;
+            font-size: 26px;
+        }
+
+        .result-section h3 {
+            color: #004d40;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .result-section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, {{ request.user.username }}!</h1>
+        <h2>Upload Your Picture</h2>
+        {% if message %}
+        <p class="error">{{ message }}</p>
+        {% endif %}
+        
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="uploadImage">
+            <button type="submit">Upload</button>
+        </form>
+        
+        {% if img %}
+        <div>
+            <h2>Uploaded Image Preview:</h2>
+            <img src="{{ img }}" alt="Uploaded Image" class="image-preview">
+        </div>
+        {% endif %}
+        
+        <a href="/" id="back">Home</a>
+        
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+    
+  
+    <div class="result-section">
+        <h2>Skin Disease Result:</h2>
+        {% if obj1 %}
+        <h3>{{ obj1 }}</h3>
+        {% endif %}
+    </div>
+    
+    <div class="result-section">
+        <h2>Diagnosis Result:</h2>
+        {% if obj2 %}
+        <h3>{{ obj2 }}</h3>
+        {% endif %}
+    </div>
+</body>
+</html>

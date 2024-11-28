@@ -1,0 +1,48 @@
+from django.shortcuts import render,redirect,HttpResponseRedirect
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth import authenticate,login
+
+def mainpage(request):
+    return render(request,'mainpage.html')
+
+def loginpage(request):
+    if(request.user.is_authenticated):
+        return render(request,'loginpage.html')
+    if(request.method == "POST"):
+        un = request.POST['username']
+        pw = request.POST['password']
+        user = authenticate(request,username=un,password=pw)
+        if(user is not None):
+            return redirect('/profilepage')
+        else:
+            msg = 'Invalid Username/Password'
+            form = AuthenticationForm(request.POST)
+            return render(request,'loginpage.html',{'form':form,'msg':msg})
+    else:
+        form = AuthenticationForm()
+        return render(request,'loginpage.html',{'form':form})
+
+def signuppage(request):
+     if(request.user.is_authenticated):
+         return redirect('/')
+     if(request.method == "POST"):
+         un = request.POST['username']
+         pw1 = request.POST['password']
+         pw2 = request.POST['confirmPassword']
+         user = authenticate(request,username=un)
+         print(user)
+         if(user is None):
+             if(pw1==pw2):
+                 authenticate(username=un,password=pw1)
+                 return redirect('/loginpage')
+             else:
+                 msg = 'Incorrect password!'
+                 return render(request,'signuppage.html',{'msg':msg})
+         else:
+             msg = 'User already registered!'
+             return render(request,'signuppage.html',{'msg':msg})
+     else:
+         return render(request,'signuppage.html')
+
+def profilepage(request):
+    return render(request,'profilepage.html')
